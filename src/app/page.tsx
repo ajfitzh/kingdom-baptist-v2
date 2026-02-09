@@ -122,7 +122,7 @@ export default async function Home() {
             <div className="aspect-video bg-slate-200 rounded-xl mb-4 overflow-hidden relative">
               {/* REAL IMAGE: Use the church building here */}
 <Image 
-    src="/church-exterior.jpg" 
+    src="/church-exterior.png" 
     alt="Kingdom Baptist Exterior" 
     fill
     className="object-cover group-hover:scale-105 transition duration-500"
