@@ -2,82 +2,184 @@ import { getSermons, getEvents } from '@/lib/baserow';
 import Link from 'next/link';
 
 export default async function Home() {
-  // Parallel data fetching (faster!)
-  const [sermons, events] = await Promise.all([getSermons(), getEvents()]);
-  
-  const latestSermon = sermons[0];
-  const upcomingEvents = events.slice(0, 3); // Only show top 3
+  // 1. Fetch Data (Parallel)
+  // We use a try/catch block so the whole page doesn't explode if Baserow is empty/down
+  let latestSermon = null;
+  let upcomingEvents = [];
+
+  try {
+    const [sermons, events] = await Promise.all([getSermons(), getEvents()]);
+    latestSermon = sermons[0];
+    upcomingEvents = events.slice(0, 3);
+  } catch (e) {
+    console.error("Baserow connection failed:", e);
+    // Fail gracefully with empty data
+  }
 
   return (
-    <main className="min-h-screen bg-gray-50 pb-20">
-      {/* Header / Navbar */}
-      <header className="bg-blue-900 text-white p-6 pb-12">
-        <h1 className="text-2xl font-bold tracking-tight">Kingdom Baptist</h1>
-        <p className="text-blue-200 text-sm">Welcome to worship!</p>
-      </header>
+    <div className="min-h-screen bg-slate-50 font-sans text-slate-900">
+      
+      {/* --- NAVIGATION (Simple) --- */}
+      <nav className="bg-white border-b border-slate-200 sticky top-0 z-50">
+        <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+          <div className="font-bold text-xl tracking-tight text-blue-900">
+            Kingdom Baptist
+          </div>
+          <div className="hidden md:flex gap-6 text-sm font-medium text-slate-600">
+            <Link href="/about" className="hover:text-blue-900">About</Link>
+            <Link href="/ministries" className="hover:text-blue-900">Ministries</Link>
+            <Link href="/media" className="hover:text-blue-900">Media</Link>
+            <Link href="/give" className="hover:text-blue-900">Giving</Link>
+          </div>
+          {/* Mobile Menu Button Placeholder */}
+          <div className="md:hidden text-2xl">≡</div>
+        </div>
+      </nav>
 
-      <div className="px-4 -mt-6 space-y-6">
+      {/* --- HERO SECTION --- */}
+      <section className="relative bg-blue-900 text-white py-16 md:py-24 px-4 overflow-hidden">
+        {/* Background Pattern/Overlay */}
+        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent" />
         
-        {/* 1. The "Featured" Card (Latest Sermon) */}
-        {latestSermon && (
-          <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
-            <div className="p-1 bg-red-500 w-full" /> {/* Accent Strip */}
-            <div className="p-5">
-              <span className="text-xs font-bold text-red-500 uppercase tracking-wider">Latest Message</span>
-              <h2 className="text-xl font-bold text-gray-900 mt-1">{latestSermon.Title}</h2>
-              <p className="text-gray-500 text-sm mt-1">
-                {new Date(latestSermon.Date).toLocaleDateString()} • {typeof latestSermon.Speaker === 'string' ? latestSermon.Speaker : latestSermon.Speaker?.value}
+        <div className="max-w-4xl mx-auto text-center relative z-10">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">
+            Welcome Home
+          </h1>
+          <p className="text-xl md:text-2xl text-blue-100 max-w-2xl mx-auto mb-10 leading-relaxed">
+            "To love the Lord our God with all of our heart, soul, mind and strength."
+          </p>
+          
+          {/* Critical Info Badges */}
+          <div className="inline-flex flex-wrap justify-center gap-4 text-sm font-medium">
+            <div className="bg-blue-800/50 backdrop-blur border border-blue-700 px-6 py-2 rounded-full flex items-center gap-2">
+              <span>📍 1717 Stafford Ave, Fredericksburg</span>
+            </div>
+            <div className="bg-blue-800/50 backdrop-blur border border-blue-700 px-6 py-2 rounded-full flex items-center gap-2">
+              <span>🕙 Sundays @ 10:30 AM</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- DYNAMIC DASHBOARD (The "App" Part) --- */}
+      <section className="max-w-6xl mx-auto px-4 -mt-8 relative z-20">
+        <div className="grid md:grid-cols-3 gap-6">
+          
+          {/* Card 1: LATEST SERMON (Takes up 2 columns on desktop) */}
+          <div className="md:col-span-2 bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden flex flex-col md:flex-row">
+            <div className="bg-slate-900 w-full md:w-1/3 min-h-[200px] flex items-center justify-center text-slate-500">
+               {/* Placeholder for Sermon Thumbnail */}
+               <span className="text-6xl">▶</span>
+            </div>
+            <div className="p-6 md:p-8 flex-1 flex flex-col justify-center">
+              <div className="uppercase tracking-wider text-xs font-bold text-blue-600 mb-2">Latest Message</div>
+              <h2 className="text-2xl font-bold mb-2">
+                {latestSermon ? latestSermon.Title : "Loading Sermon..."}
+              </h2>
+              <p className="text-slate-500 mb-6">
+                {latestSermon ? `${new Date(latestSermon.Date).toLocaleDateString()} • ${typeof latestSermon.Speaker === 'object' ? latestSermon.Speaker.value : latestSermon.Speaker}` : "Please wait..."}
               </p>
-              
-              <div className="mt-4 flex gap-3">
-                 {/* Only show button if URL exists */}
-                {latestSermon.Video_URL && (
-                  <a href={latestSermon.Video_URL} className="flex-1 bg-gray-900 text-white text-center py-2.5 rounded-lg text-sm font-semibold hover:bg-gray-800 transition">
+              <div className="flex gap-3">
+                {latestSermon?.Video_URL && (
+                  <a href={latestSermon.Video_URL} target="_blank" className="px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition">
                     Watch Now
                   </a>
                 )}
-                <button className="flex-1 bg-gray-100 text-gray-700 text-center py-2.5 rounded-lg text-sm font-semibold">
+                <button className="px-6 py-2 border border-slate-300 text-slate-700 font-semibold rounded-lg hover:bg-slate-50 transition">
                   Notes
                 </button>
               </div>
             </div>
           </div>
-        )}
 
-        {/* 2. Upcoming Events List */}
-        <div className="space-y-3">
-          <h3 className="text-lg font-bold text-gray-900 px-1">Coming Up</h3>
-          {upcomingEvents.map((event) => (
-            <div key={event.id} className="bg-white p-4 rounded-xl shadow-sm border border-gray-200 flex items-center gap-4">
-              {/* Date Badge */}
-              <div className="flex flex-col items-center bg-blue-50 text-blue-800 px-3 py-2 rounded-lg min-w-[60px]">
-                <span className="text-xs font-bold uppercase">{new Date(event.Date).toLocaleString('default', { month: 'short' })}</span>
-                <span className="text-xl font-bold leading-none">{new Date(event.Date).getDate()}</span>
-              </div>
-              
-              {/* Info */}
-              <div className="flex-1">
-                <h4 className="font-semibold text-gray-900">{event['Event Name']}</h4>
-                <p className="text-xs text-gray-500 line-clamp-1">{event.Description}</p>
-              </div>
+          {/* Card 2: UPCOMING EVENTS (Takes up 1 column) */}
+          <div className="bg-white rounded-2xl shadow-xl border border-slate-100 p-6">
+            <h3 className="text-lg font-bold border-b border-slate-100 pb-4 mb-4 flex justify-between items-center">
+              <span>Happening Soon</span>
+              <span className="text-xs font-normal text-blue-600 cursor-pointer">View All</span>
+            </h3>
+            <div className="space-y-4">
+              {upcomingEvents.length > 0 ? upcomingEvents.map((event) => (
+                <div key={event.id} className="flex gap-3 items-start">
+                  <div className="bg-blue-50 text-blue-800 rounded-lg px-2.5 py-1 text-center min-w-[50px]">
+                    <div className="text-xs font-bold uppercase">{new Date(event.Date).toLocaleString('default', { month: 'short' })}</div>
+                    <div className="text-lg font-bold leading-none">{new Date(event.Date).getDate()}</div>
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-sm leading-tight">{event['Event Name']}</h4>
+                    <p className="text-xs text-slate-500 mt-0.5 line-clamp-1">{event.Description}</p>
+                  </div>
+                </div>
+              )) : (
+                <div className="text-slate-400 text-sm text-center py-4">No upcoming events found.</div>
+              )}
             </div>
-          ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* --- STATIC PATHWAYS (From Original Site) --- */}
+      <section className="max-w-6xl mx-auto px-4 py-20">
+        <div className="grid md:grid-cols-3 gap-8 text-center">
           
-          {upcomingEvents.length === 0 && (
-            <p className="text-gray-500 italic p-4 text-center">No upcoming events scheduled.</p>
-          )}
-        </div>
-
-        {/* 3. The "Connect" Call to Action */}
-        <div className="bg-blue-50 rounded-xl p-6 border border-blue-100 text-center space-y-3">
-          <h3 className="font-bold text-blue-900">New Here?</h3>
-          <p className="text-sm text-blue-700">We'd love to get to know you and your family.</p>
-          <Link href="/connect" className="block w-full bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition">
-            Fill out Connection Card
+          {/* Pathway 1 */}
+          <Link href="/expect" className="group block">
+            <div className="aspect-video bg-slate-200 rounded-xl mb-4 overflow-hidden relative">
+              {/* Placeholder: Use an <img> tag here later */}
+              <div className="absolute inset-0 flex items-center justify-center text-slate-400 bg-slate-100 group-hover:scale-105 transition duration-500">Image: Welcome</div>
+            </div>
+            <h3 className="font-bold text-lg text-slate-800 group-hover:text-blue-700">What to Expect</h3>
+            <p className="text-slate-500 text-sm mt-2">New here? Learn what a Sunday looks like.</p>
           </Link>
-        </div>
 
-      </div>
-    </main>
+          {/* Pathway 2 */}
+          <Link href="/groups" className="group block">
+            <div className="aspect-video bg-slate-200 rounded-xl mb-4 overflow-hidden relative">
+              <div className="absolute inset-0 flex items-center justify-center text-slate-400 bg-slate-100 group-hover:scale-105 transition duration-500">Image: Groups</div>
+            </div>
+            <h3 className="font-bold text-lg text-slate-800 group-hover:text-blue-700">Join a Connect Group</h3>
+            <p className="text-slate-500 text-sm mt-2">Life is better together. Find your people.</p>
+          </Link>
+
+          {/* Pathway 3 */}
+          <Link href="/connect" className="group block">
+            <div className="aspect-video bg-slate-200 rounded-xl mb-4 overflow-hidden relative">
+              <div className="absolute inset-0 flex items-center justify-center text-slate-400 bg-slate-100 group-hover:scale-105 transition duration-500">Image: Kids</div>
+            </div>
+            <h3 className="font-bold text-lg text-slate-800 group-hover:text-blue-700">Connection Card</h3>
+            <p className="text-slate-500 text-sm mt-2">Let us know you're coming or ask for prayer.</p>
+          </Link>
+
+        </div>
+      </section>
+
+      {/* --- MISSION & FOOTER --- */}
+      <footer className="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <h4 className="text-white font-bold uppercase tracking-widest text-sm mb-6">Our Mission</h4>
+          <blockquote className="font-serif italic text-xl text-slate-300 mb-8">
+            "To demonstrate that love by making disciples of all nations for His kingdom and glory."
+          </blockquote>
+          
+          <div className="flex flex-col md:flex-row justify-center gap-8 text-sm mt-12 pt-12 border-t border-slate-800">
+            <div>
+              <strong className="block text-white mb-1">Visit Us</strong>
+              1717 Stafford Avenue<br/>Fredericksburg, VA 22401
+            </div>
+            <div>
+              <strong className="block text-white mb-1">Contact</strong>
+              (540) 368-8050 <br/>
+              info@kingdombaptist.com
+            </div>
+          </div>
+          
+          <div className="mt-12 text-xs text-slate-600">
+            © {new Date().getFullYear()} Kingdom Baptist Church. Built with ❤️.
+          </div>
+        </div>
+      </footer>
+
+    </div>
   );
 }
