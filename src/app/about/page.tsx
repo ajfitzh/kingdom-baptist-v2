@@ -11,14 +11,83 @@ export default function About() {
         </p>
       </section>
 
-      {/* WEEKLY RHYTHMS (Now with 4 Items) */}
-      <section className="py-16 px-4 max-w-5xl mx-auto">
+      {/* LEADERSHIP SPOTLIGHT (Jonathan & Brooke) */}
+      <section className="py-16 px-4 max-w-4xl mx-auto">
+        <h2 className="text-2xl font-bold text-gray-900 mb-10 text-center uppercase tracking-widest">
+          Our Leadership
+        </h2>
+        
+        {/* Pastor Card */}
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex flex-col md:flex-row mb-12">
+          <div className="md:w-1/3 bg-slate-200 min-h-[300px] relative">
+            {/* Placeholder for Photo */}
+            <div className="absolute inset-0 flex items-center justify-center text-slate-400 font-bold text-center p-4">
+              
+            </div>
+          </div>
+          <div className="p-8 md:w-2/3 flex flex-col justify-center">
+            <h3 className="text-2xl font-bold text-gray-900">Jonathan & Brooke Williams</h3>
+            <p className="text-blue-600 font-medium mb-4">Pastor & Worship Leader</p>
+            <p className="text-gray-600 leading-relaxed mb-4">
+              Jonathan Williams serves as the Pastor of Kingdom Baptist Church. He studied at Virginia Baptist College 
+              (now Veritas Baptist College) and was licensed at KBC to preach the gospel.
+            </p>
+            <p className="text-gray-600 leading-relaxed">
+              His wife, Brooke, serves as our Worship Leader. She is a gifted vocalist and a dedicated homeschool mom. 
+              Together, they have a heart for seeing families strengthened by the Word of God.
+            </p>
+          </div>
+        </div>
+
+        {/* Ministry Team Grid */}
+        <h3 className="text-xl font-bold text-gray-900 mb-6 text-center">Ministry Team Leaders</h3>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          
+          <div className="bg-white p-4 rounded-lg border border-gray-100 shadow-sm">
+            <strong className="block text-blue-900">Tom Sellers</strong>
+            <span className="text-sm text-gray-500">Adult Sunday School</span>
+          </div>
+
+          <div className="bg-white p-4 rounded-lg border border-gray-100 shadow-sm">
+            <strong className="block text-blue-900">Dan & Michelle Sanchez</strong>
+            <span className="text-sm text-gray-500">Youth Ministry</span>
+          </div>
+
+          <div className="bg-white p-4 rounded-lg border border-gray-100 shadow-sm">
+            <strong className="block text-blue-900">Charlene Henderson</strong>
+            <span className="text-sm text-gray-500">Ladies Ministry</span>
+          </div>
+
+          <div className="bg-white p-4 rounded-lg border border-gray-100 shadow-sm">
+            <strong className="block text-blue-900">Gloria Payne</strong>
+            <span className="text-sm text-gray-500">Pianist & Senior Saints</span>
+          </div>
+
+          <div className="bg-white p-4 rounded-lg border border-gray-100 shadow-sm">
+            <strong className="block text-blue-900">Jennifer Hutcheson</strong>
+            <span className="text-sm text-gray-500">Nursery Coordinator</span>
+          </div>
+
+          <div className="bg-white p-4 rounded-lg border border-gray-100 shadow-sm">
+            <strong className="block text-blue-900">Stewart & Nathan Hutcheson</strong>
+            <span className="text-sm text-gray-500">Video Ministry</span>
+          </div>
+
+           <div className="bg-white p-4 rounded-lg border border-gray-100 shadow-sm">
+            <strong className="block text-blue-900">Caleb Williams</strong>
+            <span className="text-sm text-gray-500">Audio Ministry</span>
+          </div>
+
+        </div>
+      </section>
+
+      {/* WEEKLY RHYTHMS */}
+      <section className="py-16 px-4 max-w-5xl mx-auto bg-slate-100 rounded-3xl my-12">
         <h2 className="text-2xl font-bold text-gray-900 mb-10 text-center uppercase tracking-widest">
           Our Weekly Rhythms
         </h2>
         
         <div className="grid md:grid-cols-2 gap-8">
-          {/* 1. Sunday School */}
           <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-200">
             <h3 className="text-xl font-bold text-blue-900 mb-2">Sundays @ 9:30 AM • Bible Study</h3>
             <p className="text-gray-600">
@@ -27,7 +96,6 @@ export default function About() {
             </p>
           </div>
 
-          {/* 2. Worship */}
           <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-200">
             <h3 className="text-xl font-bold text-blue-900 mb-2">Sundays @ 10:30 AM • Worship</h3>
             <p className="text-gray-600">
@@ -35,7 +103,6 @@ export default function About() {
             </p>
           </div>
 
-          {/* 3. Wednesday Night */}
           <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-200">
             <h3 className="text-xl font-bold text-blue-900 mb-2">Wednesdays @ 6:30 PM • Midweek Study</h3>
             <p className="text-gray-600">
@@ -43,42 +110,11 @@ export default function About() {
             </p>
           </div>
 
-          {/* 4. Community Meal */}
           <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-200 border-l-4 border-l-blue-500">
             <h3 className="text-xl font-bold text-blue-900 mb-2">Monthly • Community Meal</h3>
             <p className="text-gray-600">
               We believe in feeding the hungry—body and soul. Once a month, we open our doors to serve a hot, homemade meal to our neighbors in need.
             </p>
-          </div>
-        </div>
-      </section>
-
-      {/* KIDS & YOUTH (The Honest Partnership Section) */}
-      <section className="py-16 px-4 bg-white border-y border-gray-200">
-        <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">For Your Family</h3>
-            <div className="space-y-6">
-              <div>
-                <strong className="block text-lg text-blue-900">Kingdom Kids</strong>
-                <p className="text-gray-600">
-                  We provide a safe, caring nursery environment during the service for infants and toddlers, 
-                  allowing parents to focus on the sermon with peace of mind.
-                </p>
-              </div>
-              <div>
-                <strong className="block text-lg text-blue-900">Youth (Grades 6-12)</strong>
-                <p className="text-gray-600">
-                  We believe in the importance of teen fellowship. For youth group activities, 
-                  we proudly partner with our friends at <strong>Temple Baptist Church</strong> to provide 
-                  a vibrant community for middle and high schoolers.
-                </p>
-              </div>
-            </div>
-          </div>
-          {/* Simple Image Placeholder */}
-          <div className="bg-slate-100 rounded-xl aspect-square flex items-center justify-center text-slate-400">
-            Image: Small Group
           </div>
         </div>
       </section>
