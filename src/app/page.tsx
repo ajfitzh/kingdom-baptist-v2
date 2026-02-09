@@ -116,13 +116,21 @@ export default async function Home() {
             <p className="text-slate-500 text-sm mt-2">A simple, bible-focused service.</p>
           </Link>
 
-          {/* Pathway 2: Connect */}
+{/* Pathway 2: Connect */}
           <Link href="/connect" className="group block">
             <div className="aspect-video bg-slate-200 rounded-xl mb-4 overflow-hidden relative">
-              <div className="absolute inset-0 flex items-center justify-center text-slate-400 bg-slate-100 group-hover:scale-105 transition duration-500">Image: Coffee/Handshake</div>
+              {/* REAL IMAGE: Use the church building here */}
+              <img 
+                src="https://kingdombaptistchurch.com/uploads/3/4/5/6/34567929/published/screen-shot-2022-04-04-at-4-13-59-pm.png?1649104195" // <--- RENAME YOUR FILE TO THIS AND PUT IN PUBLIC FOLDER
+                alt="Kingdom Baptist Church Building"
+                className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+              />
+              
+              {/* Optional: Add a subtle gradient so it looks more 'pro' */}
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent" />
             </div>
             <h3 className="font-bold text-lg text-slate-800 group-hover:text-blue-700">Plan a Visit</h3>
-            <p className="text-slate-500 text-sm mt-2">Let us know you&lsquo;re coming.</p>
+            <p className="text-slate-500 text-sm mt-2">1717 Stafford Avenue</p>
           </Link>
 
         </div>
