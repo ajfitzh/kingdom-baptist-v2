@@ -1,15 +1,15 @@
-import { getSermons, getEvents } from '@/lib/baserow';
+// 1. Add 'Sermon' and 'ChurchEvent' to this import
+import { getSermons, getEvents, Sermon, ChurchEvent } from '@/lib/baserow';
 import Link from 'next/link';
 
 export default async function Home() {
-  // 1. Fetch Data (Parallel)
-  // We use a try/catch block so the whole page doesn't explode if Baserow is empty/down
-  let latestSermon = null;
-  let upcomingEvents = [];
+  // 2. Add these type annotations
+  let latestSermon: Sermon | null = null;
+  let upcomingEvents: ChurchEvent[] = [];
 
   try {
     const [sermons, events] = await Promise.all([getSermons(), getEvents()]);
-    latestSermon = sermons[0];
+    latestSermon = sermons[0] || null; // Handle empty array case safely
     upcomingEvents = events.slice(0, 3);
   } catch (e) {
     console.error("Baserow connection failed:", e);
