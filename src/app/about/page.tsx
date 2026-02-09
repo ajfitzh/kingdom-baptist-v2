@@ -9,7 +9,7 @@ export default function About() {
         <h1 className="text-4xl font-bold text-gray-900 mb-6">A Church That Feels Like Family</h1>
         <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
           We are a close-knit community in Fredericksburg committed to the Bible, 
-          authentic discipleship, and caring for one another. You won&lsquo;t get lost in the crowd here.
+          authentic discipleship, and caring for one another. You won&rsquo;t get lost in the crowd here.
         </p>
       </section>
 
@@ -101,7 +101,7 @@ export default function About() {
             <h3 className="text-xl font-bold text-blue-900 mb-2">Sundays @ 9:30 AM • Bible Study</h3>
             <p className="text-gray-600">
               Before service, we gather for coffee and a deep dive into Scripture. 
-              This is where we share life, pray for each other, and grow in our understanding of God&lsquo;s Word.
+              This is where we share life, pray for each other, and grow in our understanding of God&rsquo;s Word.
             </p>
           </div>
 
@@ -117,7 +117,7 @@ export default function About() {
           <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-200">
             <h3 className="text-xl font-bold text-blue-900 mb-2">Wednesdays @ 6:30 PM • Midweek Study</h3>
             <p className="text-gray-600">
-              A casual midweek recharge. We meet for prayer and an informal study of the Bible. It&lsquo;s the perfect place to ask questions and go deeper.
+              A casual midweek recharge. We meet for prayer and an informal study of the Bible. It&rsquo;s the perfect place to ask questions and go deeper.
             </p>
           </div>
 
@@ -154,9 +154,14 @@ export default function About() {
               </div>
             </div>
           </div>
-          {/* Simple Image Placeholder (or add a real one later) */}
-          <div className="bg-slate-100 rounded-xl aspect-square flex items-center justify-center text-slate-400 font-bold">
-            [Image: Kids/Group]
+          {/* IMAGE SECTION: Kids Ministry */}
+          <div className="relative aspect-square bg-slate-100 rounded-xl overflow-hidden shadow-sm">
+             <Image 
+               src="/kids-ministry.jpg" 
+               alt="Kingdom Kids Ministry" 
+               fill
+               className="object-cover"
+             />
           </div>
         </div>
       </section>
@@ -175,7 +180,7 @@ export default function About() {
               <span className="group-open:rotate-180 transition-transform">▼</span>
             </summary>
             <p className="mt-4 text-gray-600 leading-relaxed">
-              The Holy Bible was written by men divinely inspired and is God&lsquo;s revelation of Himself to man. 
+              The Holy Bible was written by men divinely inspired and is God&rsquo;s revelation of Himself to man. 
               It is a perfect treasure of divine instruction. It has God for its author, salvation for its end, 
               and truth, without any mixture of error, for its matter.
             </p>
