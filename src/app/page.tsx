@@ -108,15 +108,21 @@ export default async function Home() {
       <section className="max-w-4xl mx-auto px-4 py-20">
         <div className="grid md:grid-cols-2 gap-8 text-center">
           
-          {/* Pathway 1: About/Expect */}
+ {/* Pathway 1: About/Expect */}
           <Link href="/about" className="group block">
             <div className="aspect-video bg-slate-200 rounded-xl mb-4 overflow-hidden relative">
-              <div className="absolute inset-0 flex items-center justify-center text-slate-400 bg-slate-100 group-hover:scale-105 transition duration-500">Image: Open Bible</div>
+              <Image 
+                src="/open-bible.jpg" 
+                alt="Open Bible on a table" 
+                fill
+                className="object-cover group-hover:scale-105 transition duration-500"
+              />
+              {/* Subtle overlay to make text pop if you ever add text over it */}
+              <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-slate-900/0 transition duration-500" />
             </div>
             <h3 className="font-bold text-lg text-slate-800 group-hover:text-blue-700">What to Expect</h3>
             <p className="text-slate-500 text-sm mt-2">A simple, bible-focused service.</p>
           </Link>
-
 {/* Pathway 2: Connect */}
           <Link href="/connect" className="group block">
             <div className="aspect-video bg-slate-200 rounded-xl mb-4 overflow-hidden relative">
