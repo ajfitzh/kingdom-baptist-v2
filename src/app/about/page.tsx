@@ -1,8 +1,10 @@
+import Image from 'next/image';
+
 export default function About() {
   return (
     <div className="min-h-screen bg-slate-50">
       
-      {/* HERO */}
+      {/* --- HERO SECTION --- */}
       <section className="bg-white border-b border-gray-200 py-16 px-4 text-center">
         <h1 className="text-4xl font-bold text-gray-900 mb-6">A Church That Feels Like Family</h1>
         <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
@@ -11,7 +13,7 @@ export default function About() {
         </p>
       </section>
 
-      {/* LEADERSHIP SPOTLIGHT (Jonathan & Brooke) */}
+      {/* --- LEADERSHIP SPOTLIGHT --- */}
       <section className="py-16 px-4 max-w-4xl mx-auto">
         <h2 className="text-2xl font-bold text-gray-900 mb-10 text-center uppercase tracking-widest">
           Our Leadership
@@ -19,12 +21,18 @@ export default function About() {
         
         {/* Pastor Card */}
         <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex flex-col md:flex-row mb-12">
-          <div className="md:w-1/3 bg-slate-200 min-h-[300px] relative">
-            {/* Placeholder for Photo */}
-            <div className="absolute inset-0 flex items-center justify-center text-slate-400 font-bold text-center p-4">
-              
-            </div>
+          
+          {/* PASTOR IMAGE */}
+          <div className="md:w-1/3 relative min-h-[300px] bg-slate-100">
+             <Image 
+              src="/pastor-jon-and-wife.jpg" 
+              alt="Pastor Jonathan and Brooke Williams"
+              fill
+              className="object-cover"
+            />
           </div>
+
+          {/* PASTOR BIO */}
           <div className="p-8 md:w-2/3 flex flex-col justify-center">
             <h3 className="text-2xl font-bold text-gray-900">Jonathan & Brooke Williams</h3>
             <p className="text-blue-600 font-medium mb-4">Pastor & Worship Leader</p>
@@ -39,7 +47,7 @@ export default function About() {
           </div>
         </div>
 
-        {/* Ministry Team Grid */}
+        {/* MINISTRY TEAM GRID */}
         <h3 className="text-xl font-bold text-gray-900 mb-6 text-center">Ministry Team Leaders</h3>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           
@@ -81,13 +89,14 @@ export default function About() {
         </div>
       </section>
 
-      {/* WEEKLY RHYTHMS */}
+      {/* --- WEEKLY RHYTHMS --- */}
       <section className="py-16 px-4 max-w-5xl mx-auto bg-slate-100 rounded-3xl my-12">
         <h2 className="text-2xl font-bold text-gray-900 mb-10 text-center uppercase tracking-widest">
           Our Weekly Rhythms
         </h2>
         
         <div className="grid md:grid-cols-2 gap-8">
+          {/* 1. Sunday School */}
           <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-200">
             <h3 className="text-xl font-bold text-blue-900 mb-2">Sundays @ 9:30 AM • Bible Study</h3>
             <p className="text-gray-600">
@@ -96,6 +105,7 @@ export default function About() {
             </p>
           </div>
 
+          {/* 2. Worship */}
           <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-200">
             <h3 className="text-xl font-bold text-blue-900 mb-2">Sundays @ 10:30 AM • Worship</h3>
             <p className="text-gray-600">
@@ -103,6 +113,7 @@ export default function About() {
             </p>
           </div>
 
+          {/* 3. Wednesday Night */}
           <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-200">
             <h3 className="text-xl font-bold text-blue-900 mb-2">Wednesdays @ 6:30 PM • Midweek Study</h3>
             <p className="text-gray-600">
@@ -110,6 +121,7 @@ export default function About() {
             </p>
           </div>
 
+          {/* 4. Community Meal */}
           <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-200 border-l-4 border-l-blue-500">
             <h3 className="text-xl font-bold text-blue-900 mb-2">Monthly • Community Meal</h3>
             <p className="text-gray-600">
@@ -119,7 +131,37 @@ export default function About() {
         </div>
       </section>
 
-      {/* BELIEFS ACCORDION */}
+      {/* --- KIDS & YOUTH (Honest Partnership Section) --- */}
+      <section className="py-16 px-4 bg-white border-y border-gray-200">
+        <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">For Your Family</h3>
+            <div className="space-y-6">
+              <div>
+                <strong className="block text-lg text-blue-900">Kingdom Kids</strong>
+                <p className="text-gray-600">
+                  We provide a safe, caring nursery environment during the service for infants and toddlers, 
+                  allowing parents to focus on the sermon with peace of mind.
+                </p>
+              </div>
+              <div>
+                <strong className="block text-lg text-blue-900">Youth (Grades 6-12)</strong>
+                <p className="text-gray-600">
+                  We believe in the importance of teen fellowship. For youth group activities, 
+                  we proudly partner with our friends at <strong>Temple Baptist Church</strong> to provide 
+                  a vibrant community for middle and high schoolers.
+                </p>
+              </div>
+            </div>
+          </div>
+          {/* Simple Image Placeholder (or add a real one later) */}
+          <div className="bg-slate-100 rounded-xl aspect-square flex items-center justify-center text-slate-400 font-bold">
+            [Image: Kids/Group]
+          </div>
+        </div>
+      </section>
+
+      {/* --- BELIEFS ACCORDION --- */}
       <section className="py-20 px-4 max-w-3xl mx-auto">
         <h2 className="text-2xl font-bold text-gray-900 mb-4 text-center">What We Believe</h2>
         <p className="text-center text-gray-500 mb-10">
