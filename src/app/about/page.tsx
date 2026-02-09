@@ -1,38 +1,73 @@
-// src/app/about/page.tsx
 export default function About() {
   return (
     <div className="min-h-screen bg-slate-50">
       
       {/* HERO */}
-      <section className="bg-white border-b border-gray-200 py-20 px-4 text-center">
-        <h1 className="text-4xl font-bold text-gray-900 mb-6">About Kingdom Baptist</h1>
+      <section className="bg-white border-b border-gray-200 py-16 px-4 text-center">
+        <h1 className="text-4xl font-bold text-gray-900 mb-6">A Church That Feels Like Family</h1>
         <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-          We are a community of believers in Fredericksburg, Virginia, committed to Bible-based preaching, 
-          authentic worship, and making disciples.
+          We are a close-knit community in Fredericksburg committed to the Bible, 
+          authentic discipleship, and caring for one another. You won&lsquo;t get lost in the crowd here.
         </p>
       </section>
 
-      {/* LEADERSHIP */}
-      <section className="py-20 px-4 max-w-4xl mx-auto">
-        <h2 className="text-2xl font-bold text-gray-900 mb-10 text-center uppercase tracking-widest">Our Leadership</h2>
+      {/* WEEKLY RHYTHMS (The Honest "Ministries" Section) */}
+      <section className="py-16 px-4 max-w-4xl mx-auto">
+        <h2 className="text-2xl font-bold text-gray-900 mb-10 text-center uppercase tracking-widest">
+          Our Weekly Rhythms
+        </h2>
         
-        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex flex-col md:flex-row">
-          <div className="md:w-1/3 bg-gray-200 min-h-[300px] relative">
-            {/* Pastor Image Placeholder */}
-            <div className="absolute inset-0 flex items-center justify-center text-gray-500 font-bold">Pastor Jonathan</div>
+        <div className="grid md:grid-cols-2 gap-8">
+          {/* Sunday School */}
+          <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-200">
+            <h3 className="text-xl font-bold text-blue-900 mb-2">9:30 AM • Bible Study</h3>
+            <p className="text-gray-600">
+              Before service, we gather for coffee and a deep dive into Scripture. 
+              This is where we share life, pray for each other, and grow in our understanding of God&lsquo;s Word.
+            </p>
           </div>
-          <div className="p-8 md:w-2/3 flex flex-col justify-center">
-            <h3 className="text-2xl font-bold text-gray-900">Jonathan Williams</h3>
-            <p className="text-blue-600 font-medium mb-4">Senior Pastor</p>
-            <p className="text-gray-600 leading-relaxed">
-              Pastor Jonathan has served KBC since [Year]. He has a passion for expository preaching 
-              and seeing families strengthened by the Gospel. He and his wife reside in Fredericksburg.
+
+          {/* Worship */}
+          <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-200">
+            <h3 className="text-xl font-bold text-blue-900 mb-2">10:30 AM • Worship Service</h3>
+            <p className="text-gray-600">
+              Our main gathering focuses on expository preaching—going verse by verse through the Bible—and sincere worship.
             </p>
           </div>
         </div>
       </section>
 
-      {/* BELIEFS (Accordion Style) */}
+      {/* KIDS & YOUTH (The Honest Partnership Section) */}
+      <section className="py-16 px-4 bg-white border-y border-gray-200">
+        <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">For Your Family</h3>
+            <div className="space-y-6">
+              <div>
+                <strong className="block text-lg text-blue-900">Kingdom Kids</strong>
+                <p className="text-gray-600">
+                  We provide a safe, caring nursery environment during the service for infants and toddlers, 
+                  allowing parents to focus on the sermon with peace of mind.
+                </p>
+              </div>
+              <div>
+                <strong className="block text-lg text-blue-900">Youth (Grades 6-12)</strong>
+                <p className="text-gray-600">
+                  We believe in the importance of teen fellowship. For youth group activities, 
+                  we proudly partner with our friends at <strong>Temple Baptist Church</strong> to provide 
+                  a vibrant community for middle and high schoolers.
+                </p>
+              </div>
+            </div>
+          </div>
+          {/* Simple Image Placeholder */}
+          <div className="bg-slate-100 rounded-xl aspect-square flex items-center justify-center text-slate-400">
+            Image: Small Group
+          </div>
+        </div>
+      </section>
+
+      {/* BELIEFS ACCORDION */}
       <section className="py-20 px-4 max-w-3xl mx-auto">
         <h2 className="text-2xl font-bold text-gray-900 mb-4 text-center">What We Believe</h2>
         <p className="text-center text-gray-500 mb-10">
@@ -46,7 +81,7 @@ export default function About() {
               <span className="group-open:rotate-180 transition-transform">▼</span>
             </summary>
             <p className="mt-4 text-gray-600 leading-relaxed">
-              The Holy Bible was written by men divinely inspired and is God&apos;s revelation of Himself to man. 
+              The Holy Bible was written by men divinely inspired and is God&lsquo;s revelation of Himself to man. 
               It is a perfect treasure of divine instruction. It has God for its author, salvation for its end, 
               and truth, without any mixture of error, for its matter.
             </p>
