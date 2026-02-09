@@ -1,40 +1,25 @@
-// 1. Add 'Sermon' and 'ChurchEvent' to this import
+// src/app/page.tsx
 import { getSermons, getEvents, Sermon, ChurchEvent } from '@/lib/baserow';
 import Link from 'next/link';
 
 export default async function Home() {
-  // 2. Add these type annotations
+  // 1. Typed Variables for Safety
   let latestSermon: Sermon | null = null;
   let upcomingEvents: ChurchEvent[] = [];
 
+  // 2. Data Fetching
   try {
     const [sermons, events] = await Promise.all([getSermons(), getEvents()]);
-    latestSermon = sermons[0] || null; // Handle empty array case safely
+    latestSermon = sermons[0] || null;
     upcomingEvents = events.slice(0, 3);
   } catch (e) {
     console.error("Baserow connection failed:", e);
-    // Fail gracefully with empty data
   }
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-900">
       
-      {/* --- NAVIGATION (Simple) --- */}
-      <nav className="bg-white border-b border-slate-200 sticky top-0 z-50">
-        <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
-          <div className="font-bold text-xl tracking-tight text-blue-900">
-            Kingdom Baptist
-          </div>
-          <div className="hidden md:flex gap-6 text-sm font-medium text-slate-600">
-            <Link href="/about" className="hover:text-blue-900">About</Link>
-            <Link href="/ministries" className="hover:text-blue-900">Ministries</Link>
-            <Link href="/media" className="hover:text-blue-900">Media</Link>
-            <Link href="/give" className="hover:text-blue-900">Giving</Link>
-          </div>
-          {/* Mobile Menu Button Placeholder */}
-          <div className="md:hidden text-2xl">≡</div>
-        </div>
-      </nav>
+      {/* Note: Navbar is removed here because it is now in layout.tsx */}
 
       {/* --- HERO SECTION --- */}
       <section className="relative bg-blue-900 text-white py-16 md:py-24 px-4 overflow-hidden">
@@ -119,14 +104,13 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* --- STATIC PATHWAYS (From Original Site) --- */}
+      {/* --- STATIC PATHWAYS --- */}
       <section className="max-w-6xl mx-auto px-4 py-20">
         <div className="grid md:grid-cols-3 gap-8 text-center">
           
           {/* Pathway 1 */}
-          <Link href="/expect" className="group block">
+          <Link href="/about" className="group block">
             <div className="aspect-video bg-slate-200 rounded-xl mb-4 overflow-hidden relative">
-              {/* Placeholder: Use an <img> tag here later */}
               <div className="absolute inset-0 flex items-center justify-center text-slate-400 bg-slate-100 group-hover:scale-105 transition duration-500">Image: Welcome</div>
             </div>
             <h3 className="font-bold text-lg text-slate-800 group-hover:text-blue-700">What to Expect</h3>
@@ -134,7 +118,7 @@ export default async function Home() {
           </Link>
 
           {/* Pathway 2 */}
-          <Link href="/groups" className="group block">
+          <Link href="/ministries" className="group block">
             <div className="aspect-video bg-slate-200 rounded-xl mb-4 overflow-hidden relative">
               <div className="absolute inset-0 flex items-center justify-center text-slate-400 bg-slate-100 group-hover:scale-105 transition duration-500">Image: Groups</div>
             </div>
@@ -154,31 +138,7 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* --- MISSION & FOOTER --- */}
-      <footer className="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h4 className="text-white font-bold uppercase tracking-widest text-sm mb-6">Our Mission</h4>
-          <blockquote className="font-serif italic text-xl text-slate-300 mb-8">
-            "To demonstrate that love by making disciples of all nations for His kingdom and glory."
-          </blockquote>
-          
-          <div className="flex flex-col md:flex-row justify-center gap-8 text-sm mt-12 pt-12 border-t border-slate-800">
-            <div>
-              <strong className="block text-white mb-1">Visit Us</strong>
-              1717 Stafford Avenue<br/>Fredericksburg, VA 22401
-            </div>
-            <div>
-              <strong className="block text-white mb-1">Contact</strong>
-              (540) 368-8050 <br/>
-              info@kingdombaptist.com
-            </div>
-          </div>
-          
-          <div className="mt-12 text-xs text-slate-600">
-            © {new Date().getFullYear()} Kingdom Baptist Church. Built with ❤️.
-          </div>
-        </div>
-      </footer>
+      {/* Note: Footer is removed here because it is now in layout.tsx */}
 
     </div>
   );
