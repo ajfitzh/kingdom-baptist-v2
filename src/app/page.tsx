@@ -1,4 +1,3 @@
-// src/app/page.tsx
 import { getSermons, getEvents, Sermon, ChurchEvent } from '@/lib/baserow';
 import Link from 'next/link';
 
@@ -19,7 +18,7 @@ export default async function Home() {
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-900">
       
-      {/* Note: Navbar is removed here because it is now in layout.tsx */}
+      {/* Note: Navbar is handled in layout.tsx */}
 
       {/* --- HERO SECTION --- */}
       <section className="relative bg-blue-900 text-white py-16 md:py-24 px-4 overflow-hidden">
@@ -31,7 +30,7 @@ export default async function Home() {
             Welcome Home
           </h1>
           <p className="text-xl md:text-2xl text-blue-100 max-w-2xl mx-auto mb-10 leading-relaxed">
-            &quot;To love the Lord our God with all of our heart, soul, mind and strength.&quot;
+            &ldquo;To love the Lord our God with all of our heart, soul, mind and strength.&ldquo;
           </p>
           
           {/* Critical Info Badges */}
@@ -104,41 +103,32 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* --- STATIC PATHWAYS --- */}
-      <section className="max-w-6xl mx-auto px-4 py-20">
-        <div className="grid md:grid-cols-3 gap-8 text-center">
+      {/* --- CONNECT SECTION (2 Cards Only) --- */}
+      <section className="max-w-4xl mx-auto px-4 py-20">
+        <div className="grid md:grid-cols-2 gap-8 text-center">
           
-          {/* Pathway 1 */}
+          {/* Pathway 1: About/Expect */}
           <Link href="/about" className="group block">
             <div className="aspect-video bg-slate-200 rounded-xl mb-4 overflow-hidden relative">
-              <div className="absolute inset-0 flex items-center justify-center text-slate-400 bg-slate-100 group-hover:scale-105 transition duration-500">Image: Welcome</div>
+              <div className="absolute inset-0 flex items-center justify-center text-slate-400 bg-slate-100 group-hover:scale-105 transition duration-500">Image: Open Bible</div>
             </div>
             <h3 className="font-bold text-lg text-slate-800 group-hover:text-blue-700">What to Expect</h3>
-            <p className="text-slate-500 text-sm mt-2">New here? Learn what a Sunday looks like.</p>
+            <p className="text-slate-500 text-sm mt-2">A simple, bible-focused service.</p>
           </Link>
 
-          {/* Pathway 2 */}
-          <Link href="/ministries" className="group block">
-            <div className="aspect-video bg-slate-200 rounded-xl mb-4 overflow-hidden relative">
-              <div className="absolute inset-0 flex items-center justify-center text-slate-400 bg-slate-100 group-hover:scale-105 transition duration-500">Image: Groups</div>
-            </div>
-            <h3 className="font-bold text-lg text-slate-800 group-hover:text-blue-700">Join a Connect Group</h3>
-            <p className="text-slate-500 text-sm mt-2">Life is better together. Find your people.</p>
-          </Link>
-
-          {/* Pathway 3 */}
+          {/* Pathway 2: Connect */}
           <Link href="/connect" className="group block">
             <div className="aspect-video bg-slate-200 rounded-xl mb-4 overflow-hidden relative">
-              <div className="absolute inset-0 flex items-center justify-center text-slate-400 bg-slate-100 group-hover:scale-105 transition duration-500">Image: Kids</div>
+              <div className="absolute inset-0 flex items-center justify-center text-slate-400 bg-slate-100 group-hover:scale-105 transition duration-500">Image: Coffee/Handshake</div>
             </div>
-            <h3 className="font-bold text-lg text-slate-800 group-hover:text-blue-700">Connection Card</h3>
-            <p className="text-slate-500 text-sm mt-2">Let us know you&apos;re coming or ask for prayer.</p>
+            <h3 className="font-bold text-lg text-slate-800 group-hover:text-blue-700">Plan a Visit</h3>
+            <p className="text-slate-500 text-sm mt-2">Let us know you&lsquo;re coming.</p>
           </Link>
 
         </div>
       </section>
 
-      {/* Note: Footer is removed here because it is now in layout.tsx */}
+      {/* Note: Footer is handled in layout.tsx */}
 
     </div>
   );
