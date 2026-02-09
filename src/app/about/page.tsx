@@ -11,27 +11,43 @@ export default function About() {
         </p>
       </section>
 
-      {/* WEEKLY RHYTHMS (The Honest "Ministries" Section) */}
-      <section className="py-16 px-4 max-w-4xl mx-auto">
+      {/* WEEKLY RHYTHMS (Now with 4 Items) */}
+      <section className="py-16 px-4 max-w-5xl mx-auto">
         <h2 className="text-2xl font-bold text-gray-900 mb-10 text-center uppercase tracking-widest">
           Our Weekly Rhythms
         </h2>
         
         <div className="grid md:grid-cols-2 gap-8">
-          {/* Sunday School */}
+          {/* 1. Sunday School */}
           <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-200">
-            <h3 className="text-xl font-bold text-blue-900 mb-2">9:30 AM • Bible Study</h3>
+            <h3 className="text-xl font-bold text-blue-900 mb-2">Sundays @ 9:30 AM • Bible Study</h3>
             <p className="text-gray-600">
               Before service, we gather for coffee and a deep dive into Scripture. 
               This is where we share life, pray for each other, and grow in our understanding of God&lsquo;s Word.
             </p>
           </div>
 
-          {/* Worship */}
+          {/* 2. Worship */}
           <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-200">
-            <h3 className="text-xl font-bold text-blue-900 mb-2">10:30 AM • Worship Service</h3>
+            <h3 className="text-xl font-bold text-blue-900 mb-2">Sundays @ 10:30 AM • Worship</h3>
             <p className="text-gray-600">
               Our main gathering focuses on expository preaching—going verse by verse through the Bible—and sincere worship.
+            </p>
+          </div>
+
+          {/* 3. Wednesday Night */}
+          <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-200">
+            <h3 className="text-xl font-bold text-blue-900 mb-2">Wednesdays @ 6:30 PM • Midweek Study</h3>
+            <p className="text-gray-600">
+              A casual midweek recharge. We meet for prayer and an informal study of the Bible. It&lsquo;s the perfect place to ask questions and go deeper.
+            </p>
+          </div>
+
+          {/* 4. Community Meal */}
+          <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-200 border-l-4 border-l-blue-500">
+            <h3 className="text-xl font-bold text-blue-900 mb-2">Monthly • Community Meal</h3>
+            <p className="text-gray-600">
+              We believe in feeding the hungry—body and soul. Once a month, we open our doors to serve a hot, homemade meal to our neighbors in need.
             </p>
           </div>
         </div>
