@@ -31,7 +31,7 @@ export default async function Home() {
             Welcome Home
           </h1>
           <p className="text-xl md:text-2xl text-blue-100 max-w-2xl mx-auto mb-10 leading-relaxed">
-            &ldquo;To love the Lord our God with all of our heart, soul, mind and strength.&ldquo;
+            &ldquo;To love the Lord our God with all of our heart, soul, mind and strength.&rdquo;
           </p>
           
           {/* Critical Info Badges */}
@@ -52,10 +52,23 @@ export default async function Home() {
           
           {/* Card 1: LATEST SERMON (Takes up 2 columns on desktop) */}
           <div className="md:col-span-2 bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden flex flex-col md:flex-row">
-            <div className="bg-slate-900 w-full md:w-1/3 min-h-[200px] flex items-center justify-center text-slate-500">
-               {/* Placeholder for Sermon Thumbnail */}
-               <span className="text-6xl">▶</span>
+            
+            {/* SERMON THUMBNAIL (Now using the Pastor Image) */}
+            <div className="relative w-full md:w-1/3 min-h-[200px] bg-slate-900">
+               <Image 
+                 src="/pastor-preaching.jpg" 
+                 alt="Pastor Jonathan Preaching" 
+                 fill
+                 className="object-cover opacity-90"
+               />
+               {/* Play Icon Overlay */}
+               <div className="absolute inset-0 flex items-center justify-center">
+                 <div className="w-12 h-12 bg-white/20 backdrop-blur rounded-full flex items-center justify-center border border-white/50">
+                    <span className="text-white text-xl ml-1">▶</span>
+                 </div>
+               </div>
             </div>
+
             <div className="p-6 md:p-8 flex-1 flex flex-col justify-center">
               <div className="uppercase tracking-wider text-xs font-bold text-blue-600 mb-2">Latest Message</div>
               <h2 className="text-2xl font-bold mb-2">
@@ -108,7 +121,7 @@ export default async function Home() {
       <section className="max-w-4xl mx-auto px-4 py-20">
         <div className="grid md:grid-cols-2 gap-8 text-center">
           
- {/* Pathway 1: About/Expect */}
+          {/* Pathway 1: About/Expect */}
           <Link href="/about" className="group block">
             <div className="aspect-video bg-slate-200 rounded-xl mb-4 overflow-hidden relative">
               <Image 
@@ -117,22 +130,22 @@ export default async function Home() {
                 fill
                 className="object-cover group-hover:scale-105 transition duration-500"
               />
-              {/* Subtle overlay to make text pop if you ever add text over it */}
+              {/* Subtle overlay */}
               <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-slate-900/0 transition duration-500" />
             </div>
             <h3 className="font-bold text-lg text-slate-800 group-hover:text-blue-700">What to Expect</h3>
             <p className="text-slate-500 text-sm mt-2">A simple, bible-focused service.</p>
           </Link>
-{/* Pathway 2: Connect */}
+
+          {/* Pathway 2: Connect */}
           <Link href="/connect" className="group block">
             <div className="aspect-video bg-slate-200 rounded-xl mb-4 overflow-hidden relative">
-              {/* REAL IMAGE: Use the church building here */}
-<Image 
-    src="/church-exterior.png" 
-    alt="Kingdom Baptist Exterior" 
-    fill
-    className="object-cover group-hover:scale-105 transition duration-500"
-  />
+              <Image 
+                src="/church_exterior.png" // Updated to match your file list (underscore)
+                alt="Kingdom Baptist Exterior" 
+                fill
+                className="object-cover group-hover:scale-105 transition duration-500"
+              />
               
               {/* Optional: Add a subtle gradient so it looks more 'pro' */}
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent" />
