@@ -46,7 +46,7 @@ export default function About() {
               <span className="group-open:rotate-180 transition-transform">▼</span>
             </summary>
             <p className="mt-4 text-gray-600 leading-relaxed">
-              The Holy Bible was written by men divinely inspired and is God's revelation of Himself to man. 
+              The Holy Bible was written by men divinely inspired and is God&apos;s revelation of Himself to man. 
               It is a perfect treasure of divine instruction. It has God for its author, salvation for its end, 
               and truth, without any mixture of error, for its matter.
             </p>

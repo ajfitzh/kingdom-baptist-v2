@@ -4,7 +4,7 @@ export default function Footer() {
       <div className="max-w-4xl mx-auto px-4 text-center">
         <h4 className="text-white font-bold uppercase tracking-widest text-sm mb-6">Our Mission</h4>
         <blockquote className="font-serif italic text-xl text-slate-300 mb-8">
-          "To demonstrate that love by making disciples of all nations for His kingdom and glory."
+          &ldquo;To demonstrate that love by making disciples of all nations for His kingdom and glory.&quot;
         </blockquote>
         
         <div className="flex flex-col md:flex-row justify-center gap-8 text-sm mt-12 pt-12 border-t border-slate-800">

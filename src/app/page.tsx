@@ -31,7 +31,7 @@ export default async function Home() {
             Welcome Home
           </h1>
           <p className="text-xl md:text-2xl text-blue-100 max-w-2xl mx-auto mb-10 leading-relaxed">
-            "To love the Lord our God with all of our heart, soul, mind and strength."
+            &quot;To love the Lord our God with all of our heart, soul, mind and strength.&quot;
           </p>
           
           {/* Critical Info Badges */}
@@ -132,7 +132,7 @@ export default async function Home() {
               <div className="absolute inset-0 flex items-center justify-center text-slate-400 bg-slate-100 group-hover:scale-105 transition duration-500">Image: Kids</div>
             </div>
             <h3 className="font-bold text-lg text-slate-800 group-hover:text-blue-700">Connection Card</h3>
-            <p className="text-slate-500 text-sm mt-2">Let us know you're coming or ask for prayer.</p>
+            <p className="text-slate-500 text-sm mt-2">Let us know you&apos;re coming or ask for prayer.</p>
           </Link>
 
         </div>
