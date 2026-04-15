@@ -57,7 +57,7 @@ export default async function MediaPage() {
                   </h3>
                   <div className="mt-auto pt-4 border-t border-slate-100 flex justify-between text-sm text-slate-500">
                     <span>{new Date(sermon.Date).toLocaleDateString()}</span>
-                    <span>{typeof sermon.Speaker === 'object' ? sermon.Speaker.value : sermon.Speaker}</span>
+                    <span>{sermon.Speaker}</span>
                   </div>
                 </div>
               </div>

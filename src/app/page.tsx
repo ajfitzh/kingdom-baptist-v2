@@ -75,7 +75,7 @@ export default async function Home() {
                 {latestSermon ? latestSermon.Title : "Loading Sermon..."}
               </h2>
               <p className="text-slate-500 mb-6">
-                {latestSermon ? `${new Date(latestSermon.Date).toLocaleDateString()} • ${typeof latestSermon.Speaker === 'object' ? latestSermon.Speaker.value : latestSermon.Speaker}` : "Please wait..."}
+                {latestSermon ? `${new Date(latestSermon.Date).toLocaleDateString()} • ${latestSermon.Speaker}` : "Please wait..."}
               </p>
               <div className="flex gap-3">
                 {latestSermon?.Video_URL && (

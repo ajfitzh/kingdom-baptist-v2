@@ -1,62 +1,60 @@
-// lib/baserow.ts
+import { PrismaClient } from '@prisma/client';
+
+const globalForPrisma = global as unknown as { prisma: PrismaClient };
+export const prisma = globalForPrisma.prisma || new PrismaClient();
+if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
+
 export interface Sermon {
   id: number;
   Title: string;
   Date: string;
-  Speaker: { value: string; id: number } | string; // Handles Select or Text field
+  Speaker: string;
   Video_URL: string;
 }
 
-export async function getSermons() {
-  const tableId = process.env.BASEROW_SERMONS_TABLE_ID;
-  const token = process.env.BASEROW_TOKEN;
-
-  // Order by date descending (-Date) so newest is first
-  const url = `https://api.baserow.io/api/database/rows/table/${tableId}/?user_field_names=true&order_by=-Date`;
-
-  const res = await fetch(url, {
-    headers: {
-      Authorization: `Token ${token}`,
-    },
-    next: { revalidate: 60 }, // ISR: Cache for 60 seconds
-  });
-
-  if (!res.ok) throw new Error('Failed to fetch sermons');
-
-  const data = await res.json();
-  return data.results as Sermon[];
+export async function getSermons(): Promise<Sermon[]> {
+  try {
+    const sermons = await prisma.sermon.findMany({
+      orderBy: { date: 'desc' }
+    });
+    return sermons.map(s => ({
+      id: s.id,
+      Title: s.title,
+      Date: s.date.toISOString(),
+      Speaker: s.speaker,
+      Video_URL: s.videoUrl || ''
+    }));
+  } catch (e) {
+    console.error("Database not ready yet", e);
+    return [];
+  }
 }
 
 export interface ChurchEvent {
   id: number;
-  "Event Name": string; // Note: Baserow keys have spaces if you didn't check "user_field_names"
+  "Event Name": string;
   Date: string;
   Description: string;
   "Signup Link": string;
 }
 
-export async function getEvents() {
-  const tableId = process.env.BASEROW_EVENTS_TABLE_ID;
-  const token = process.env.BASEROW_TOKEN;
-
-  // Order by Date ascending (oldest first) so we see the next upcoming event
-  // Filter to only show future events (optional, but good practice)
-  const url = `https://api.baserow.io/api/database/rows/table/${tableId}/?user_field_names=true&order_by=Date`;
-
-  const res = await fetch(url, {
-    headers: { Authorization: `Token ${token}` },
-    next: { revalidate: 60 },
-  });
-
-  if (!res.ok) throw new Error("Failed to fetch events");
-
-  const data = await res.json();
-  
-  // Filter for future events only (Client-side filtering is easier for small datasets)
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  
-  return (data.results as ChurchEvent[]).filter(event => 
-    new Date(event.Date) >= today
-  );
+export async function getEvents(): Promise<ChurchEvent[]> {
+  try {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const events = await prisma.churchEvent.findMany({
+      where: { date: { gte: today } },
+      orderBy: { date: 'asc' }
+    });
+    return events.map(e => ({
+      id: e.id,
+      "Event Name": e.eventName,
+      Date: e.date.toISOString(),
+      Description: e.description,
+      "Signup Link": e.signupLink || ''
+    }));
+  } catch (e) {
+    console.error("Database not ready yet", e);
+    return [];
+  }
 }

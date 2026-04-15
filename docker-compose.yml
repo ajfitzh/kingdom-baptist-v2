@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  # Container 1: The Database
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: kbc_user
+      POSTGRES_PASSWORD: kbc_password
+      POSTGRES_DB: kbc_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  # Container 2: The Next.js Web App
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=postgresql://kbc_user:kbc_password@db:5432/kbc_db?schema=public
+    depends_on:
+      - db
+    restart: unless-stopped
+    # Push the schema to the DB before the web server starts
+    command: sh -c "npx prisma db push && npm start"
+
+  # Container 3: Prisma Studio (The Admin UI!)
+  studio:
+    build: .
+    ports:
+      - "5555:5555"
+    environment:
+      - DATABASE_URL=postgresql://kbc_user:kbc_password@db:5432/kbc_db?schema=public
+    depends_on:
+      - db
+    restart: unless-stopped
+    command: npx prisma studio
+
+volumes:
+  pgdata:
