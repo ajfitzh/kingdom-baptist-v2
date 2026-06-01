@@ -1,3 +1,6 @@
+// app/page.tsx
+export const dynamic = 'force-dynamic';
+
 import { getSermons, getEvents, Sermon, ChurchEvent } from '@/lib/baserow';
 import Link from 'next/link';
 import Image from 'next/image';
