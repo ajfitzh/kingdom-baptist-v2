@@ -12,7 +12,7 @@ export interface Sermon {
   id: number;
   order: string;
   Title: string; // "Field Name" in Baserow
-  Date: string;  // ISO Date string
+  Date: string; // ISO Date string
   Speaker: {
     id: number;
     value: string;

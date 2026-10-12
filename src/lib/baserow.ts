@@ -1,8 +1,17 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from "@/generated/client";
+import { PrismaPg } from "@prisma/adapter-pg";
 
-const globalForPrisma = global as unknown as { prisma: PrismaClient };
-export const prisma = globalForPrisma.prisma || new PrismaClient();
-if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
+// const adapter = new PrismaPg({
+//   connectionString: process.env.DATABASE_URL!,
+// });
+
+export const prisma = new PrismaClient({
+  adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL }),
+}); //{ adapter });
+
+// const globalForPrisma = global as unknown as { prisma: PrismaClient };
+// export const prisma = globalForPrisma.prisma || new PrismaClient();
+// if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
 
 export interface Sermon {
   id: number;
@@ -15,14 +24,15 @@ export interface Sermon {
 export async function getSermons(): Promise<Sermon[]> {
   try {
     const sermons = await prisma.sermon.findMany({
-      orderBy: { date: 'desc' }
+      where: { date: { lte: new Date(new Date().setHours(24,0,0,-1)) } },
+      orderBy: { date: "desc" },
     });
-    return sermons.map(s => ({
+    return sermons.map((s: any) => ({
       id: s.id,
       Title: s.title,
       Date: s.date.toISOString(),
       Speaker: s.speaker,
-      Video_URL: s.videoUrl || ''
+      Video_URL: s.videoUrl || "",
     }));
   } catch (e) {
     console.error("Database not ready yet", e);
@@ -44,14 +54,14 @@ export async function getEvents(): Promise<ChurchEvent[]> {
     today.setHours(0, 0, 0, 0);
     const events = await prisma.churchEvent.findMany({
       where: { date: { gte: today } },
-      orderBy: { date: 'asc' }
+      orderBy: { date: "asc" },
     });
-    return events.map(e => ({
+    return events.map((e: any) => ({
       id: e.id,
       "Event Name": e.eventName,
       Date: e.date.toISOString(),
       Description: e.description,
-      "Signup Link": e.signupLink || ''
+      "Signup Link": e.signupLink || "",
     }));
   } catch (e) {
     console.error("Database not ready yet", e);

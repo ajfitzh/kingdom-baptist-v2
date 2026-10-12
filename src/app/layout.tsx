@@ -20,11 +20,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Navbar />        {/* <--- Stays here forever */}
-        
-        {children}        {/* <--- This is where page.tsx / about/page.tsx loads */}
-        
-        <Footer />        {/* <--- Stays here forever */}
+        <Navbar /> {/* <--- Stays here forever */}
+        {children} {/* <--- This is where page.tsx / about/page.tsx loads */}
+        <Footer /> {/* <--- Stays here forever */}
       </body>
     </html>
   );
