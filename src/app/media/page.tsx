@@ -1,11 +1,12 @@
-import { getSermons, Sermon } from '@/lib/baserow';
+import { getSermons, Sermon } from "@/lib/baserow";
+export const dynamic = "force-dynamic";
 
 // Helper to get the video ID so we can embed it
 function getYoutubeEmbedUrl(url: string) {
   try {
-    const videoId = url.split('v=')[1]?.split('&')[0];
+    const videoId = url.split("v=")[1]?.split("&")[0];
     return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (e) {
     return null;
   }
@@ -31,9 +32,12 @@ export default async function MediaPage() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {sermons.map((sermon) => {
             const embedUrl = getYoutubeEmbedUrl(sermon.Video_URL);
-            
+
             return (
-              <div key={sermon.id} className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
+              <div
+                key={sermon.id}
+                className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+              >
                 {/* Video Player */}
                 <div className="aspect-video bg-slate-100">
                   {embedUrl ? (
@@ -67,7 +71,7 @@ export default async function MediaPage() {
 
         {sermons.length === 0 && (
           <div className="text-center py-20 text-slate-500">
-            No sermons found. Check your Baserow database!
+            No sermons found. Check your database!
           </div>
         )}
       </div>
